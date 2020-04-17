@@ -22,6 +22,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <sonar.projectKey>nathanlatino_Spring_Boardel</sonar.projectKey>
+        <sonar.organization>nathanlatino</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>ad7d1954ba5af9ee798295034f5c0f625d3b829c</sonar.login>
     </properties>
 
     <dependencies>
