@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragments.html :: header" lang="en"/>
+
+<body>
+
+<div th:replace="fragments/fragments.html :: navigation"></div>
+
+<div class="container mt-5">
+    <form method="post" th:action="@{/boards}" th:object="${board}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+            <label for="name">Board name</label>
+            <input type="text" class="form-control" id="name" placeholder="Board name" th:field="*{name}"
+                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : '' " required>
+            <div class="invalid-feedback"
+                 th:each="error: ${#fields.errors('name')}"
+                 th:text="${error}">Validation error
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Board description</label>
+            <textarea class="form-control" id="description" rows="10" placeholder="Board description"
+                      th:field="*{description}"
+                      th:classappend="${#fields.hasErrors('description')} ? 'is-invalid' : '' " required></textarea>
+            <div class="invalid-feedback"
+                 th:each="error: ${#fields.errors('description')}"
+                 th:text="${error}">Validation error
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right">Save</button>
+    </form>
+</div>
+
+<div th:replace="fragments/fragments.html :: scripts"></div>
+</body>
+</html>

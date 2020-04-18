@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="fragments/fragments.html :: header" lang="en"/>
+
+<body>
+<div th:replace="fragments/fragments.html :: navigation"></div>
+<div class="container">
+    <form method="POST" action="#" th:action="@{/login}">
+        <h1 class="text-center display-4 mb-3">Log in</h1>
+        <div class="form-row">
+            <div class="mx-auto col-md-6">
+                <div th:if="${message != null}" class="alert alert-success" th:text="${message}" role="alert">
+                    You have been logged out successfully.
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="mx-auto col-md-6">
+                <div th:if="${error != null}" class="alert alert-danger" th:text="${error}" role="alert">
+                    Your username and password is invalid.
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="mx-auto col-md-6">
+                <label th:text="#{label.user.username}">username</label>
+                <input name="username" type="text" class="form-control" placeholder="Username"
+                       autofocus="true" required/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="mx-auto col-md-6">
+                <label th:text="#{label.user.password}">password</label>
+                <input name="password" type="password" class="form-control" placeholder="Password" required/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="mx-auto my-md-3 col-md-6">
+                <button class="btn btn-lg btn-dark btn-block" type="submit">Log In</button>
+                <h4 class="text-center my-3"><a href="/register">Create an account</a></h4>
+                <h4 class="text-center"><a th:href="@{/forgotpassword}"
+                                           th:text="#{message.resetPassword}">reset</a></h4>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<div th:replace="fragments/fragments.html :: scripts"></div>
+</body>
+</html>

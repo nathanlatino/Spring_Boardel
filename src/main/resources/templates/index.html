@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/fragments.html :: header"/>
+
+<body>
+
+<div th:replace="fragments/fragments.html :: navigation"></div>
+
+<div class="container">
+      <h1 class="display-3 text-center mb-4">Welcome on SMB</h1>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-12 my-md-4">
+          <div class="card text-white bg-light mb-3">
+            <div class="card-header bg-dark text-center">Consult the boards</div>
+            <div class="card-body text-dark">
+              <img th:src="@{/img/boards.png}" class="img-fluid" alt="">
+              <p class="card-text">Find interesting subject</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="card text-white bg-light mb-3">
+            <div class="card-header bg-dark text-center">Read or create post</div>
+            <div class="card-body text-dark">
+              <img th:src="@{/img/posts.png}" class="img-fluid" alt="">
+              <p class="card-text">Create post styled with markdown</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="card text-white bg-light mb-3">
+            <div class="card-header bg-dark text-center">Interact with other people</div>
+            <div class="card-body text-dark">
+              <img th:src="@{/img/comment.png}" class="img-fluid" alt="">
+              <p class="card-text">Comment posts to interact with people</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div th:replace="fragments/fragments.html :: scripts"></div>
+</body>
+</html>

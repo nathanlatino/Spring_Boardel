@@ -1,0 +1,47 @@
+.navbar-link {
+    color: white;
+    font-weight: 300;
+    margin-right: 10px;
+}
+
+.navbar-link:hover {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    font-weight: bolder;
+}
+
+.whiteBackground {
+    background-color: white !important;
+}
+
+#contentContainer .CodeMirror,
+#contentContainer .CodeMirror .CodeMirror-scroll {
+    min-height: 100px;
+    height: auto;
+}
+
+.borderCustom {
+    border-color: #ced4da !important;
+}
+
+body {
+    background-color: rgba(200, 200, 200, 0.3);
+}
+
+.colorHover:hover {
+    background-color: rgba(83, 129, 179, 0.65) !important;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: grey;
+}
+
+.pageChanger {
+    font-size: 25px;
+}
