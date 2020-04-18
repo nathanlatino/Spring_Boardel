@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ch.hearc.smf</groupId>
-    <artifactId>SMF</artifactId>
+    <groupId>ch.hearc.boardel</groupId>
+    <artifactId>boardel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>SpringBootDockerDemoDebug</name>
-    <description>Demo project for Spring Boot</description>
+    <name>Boardel</name>
+    <description>classic forum</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
     </parent>
 
     <properties>
+        <start-class>ch.hearc.boardel.BoardelApplication</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -82,6 +83,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
