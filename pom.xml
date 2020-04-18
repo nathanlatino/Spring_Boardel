@@ -20,19 +20,39 @@
 
     <properties>
         <start-class>ch.hearc.boardel.BoardelApplication</start-class>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
         <sonar.projectKey>nathanlatino_Spring_Boardel</sonar.projectKey>
         <sonar.organization>nathanlatino</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>ad7d1954ba5af9ee798295034f5c0f625d3b829c</sonar.login>
+
+        <spring.version>4.0.0.RELEASE</spring.version>
+        <hibernate.version>4.1.9.Final</hibernate.version>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.11.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -57,6 +77,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
@@ -68,6 +93,35 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.1.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars.bowergithub.jquery/jquery-dist -->
+        <dependency>
+            <groupId>org.webjars.bowergithub.jquery</groupId>
+            <artifactId>jquery-dist</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
