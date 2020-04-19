@@ -17,9 +17,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "18080:8080"
-    depends_on:
-      db:
-        condition: service_healthy
+#    depends_on:
+#      db:
+#        condition: service_healthy
     networks:
       - test
 
@@ -29,7 +29,7 @@ services:
     ports:
       - "13306:3306"
     healthcheck:
-          test: ["CMD", "mysql", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root", "-e", "select 1", "DOCKERDB"]
+          test: ["CMD", "mysql", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root", "-e", "select 1", "board"]
           interval: 1s
           timeout: 3s
           retries: 30
