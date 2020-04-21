@@ -18,7 +18,7 @@ pipeline {
             stage('QualityTest') {
                  agent {
                   docker {
-                   image 'maven:3-alpine'
+                   image 'maven:3.6.3-jdk-11-slim'
                   }
                 }
                 steps {
