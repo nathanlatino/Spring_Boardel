@@ -36,7 +36,7 @@ pipeline {
     post {
         always {
             echo 'always clean up'
-            deleteDir()
+//             deleteDir()
         }
     }
 }
