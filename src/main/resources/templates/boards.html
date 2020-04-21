@@ -7,13 +7,13 @@
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
 <div class="container mt-5">
-    <h1 class="text-center display-4 mb-3">Boards</h1>
+    <h1 class="text-center display-4 mb-3">Topics</h1>
     <table class="table table-hover border border-secondary rounded">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col"><a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " class="float-right" href="/boards/create"><i class="fas fa-plus">+</i></a></th>
+            <th scope="col"><a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " class="float-right" href="/boards/create"><i class="fas fa-plus"/></a></th>
         </tr>
         </thead>
         <tbody class="whiteBackground">
