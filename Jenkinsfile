@@ -51,6 +51,7 @@ pipeline {
     post {
         always {
             echo 'always clean up'
+            junit 'target/surefire-reports/*.xml'
             deleteDir()
         }
     }
