@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y maven
 COPY . /project
 
 #Pour supprimer le cache du projet
-#RUN  rm -rf .m2
+RUN  rm -rf .m2
 
 #RUN  cd /project && mvn clean dependency:copy-dependencies package
 RUN  cd /project && mvn clean package

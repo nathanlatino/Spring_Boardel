@@ -29,7 +29,7 @@ services:
     ports:
       - "13306:3306"
     healthcheck:
-          test: ["CMD", "mysql", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root", "-e", "select 1", "board"]
+          test: ["CMD", "mysql", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root", "-e", "select 1", "BOARDEL"]
           interval: 1s
           timeout: 3s
           retries: 30
