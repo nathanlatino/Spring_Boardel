@@ -25,6 +25,8 @@ pipeline {
                     unstash "app"
                     sh '(mvn clean test)'
                     sh '(mvn sonar:sonar -Dsonar.projectKey=nathanlatino_Spring_Boardel -Dsonar.organization=nathanlatino -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=d4f9782c005a67b3ad5d7c60d1db6a304048a6b7)'
+                    sh '(mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify)'
+                    sh '(mvn org.jacoco:jacoco-maven-plugin:report)'
                 }
             }
         stage('IntegrationTest') {
@@ -38,8 +40,7 @@ pipeline {
                 unstash "app"
                 sh 'java -jar target/boardel-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
                 sh 'sleep 30'
-                sh '(mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify)'
-                sh '(mvn org.jacoco:jacoco-maven-plugin:report)'
+
 
                 cleanWs()
 //                 sh './runTest.sh'
