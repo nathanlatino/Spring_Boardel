@@ -23,12 +23,12 @@ pipeline {
             }
             steps {
                 unstash "app"
-                sh '(mvn checkstyle:check)'
+//                 sh '(mvn checkstyle:check)'
                 sh '(mvn clean test)'
                 sh '(mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify)'
                 sh '(mvn org.jacoco:jacoco-maven-plugin:report)'
-//                 sh '(mvn sonar:sonar -Dsonar.projectKey=nathanlatino_Spring_Boardel -Dsonar.organization=nathanlatino -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=d4f9782c005a67b3ad5d7c60d1db6a304048a6b7)'
-                sh './runTest.sh'
+                sh '(mvn sonar:sonar -Dsonar.projectKey=nathanlatino_Spring_Boardel -Dsonar.organization=nathanlatino -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=d4f9782c005a67b3ad5d7c60d1db6a304048a6b7)'
+//                 sh './runTest.sh'
             }
 
         }
