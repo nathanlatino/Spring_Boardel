@@ -15,29 +15,37 @@ pipeline {
                 stash name: "app", includes: "**"
             }
         }
-	    stage('Test') {
-            agent {
+            stage('QualityTest') {
+                 agent {
+                  docker {
+                   image 'maven:3-alpine'
+                  }
+                }
+                steps {
+                    unstash "app"
+                    sh '(mvn clean test)'
+                    sh '(mvn sonar:sonar -Dsonar.projectKey=nathanlatino_Spring_Boardel -Dsonar.organization=nathanlatino -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=d4f9782c005a67b3ad5d7c60d1db6a304048a6b7)'
+                }
+            }
+        stage('IntegrationTest') {
+             agent {
               docker {
-               image 'maven:3.6.3-jdk-11-slim'
+               image 'lucienmoor/katalon-for-jenkins:latest'
+               args '-p 9999:9090'
               }
             }
             steps {
                 unstash "app"
-                sh '(mvn clean test)'
+                sh 'java -jar target/boardel-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+                sh 'sleep 30'
                 sh '(mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify)'
                 sh '(mvn org.jacoco:jacoco-maven-plugin:report)'
-                sh '(mvn sonar:sonar -Dsonar.projectKey=nathanlatino_Spring_Boardel -Dsonar.organization=nathanlatino -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=d4f9782c005a67b3ad5d7c60d1db6a304048a6b7)'
-                sh 'java -jar target/SMF-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+
                 cleanWs()
 //                 sh './runTest.sh'
             }
 
         }
-        stage('Deploy') {
-                    steps {
-                        echo 'Deploying'
-                    }
-                }
     }
     post {
         always {
