@@ -6,31 +6,38 @@
 
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
-<div class="container mt-5">
-    <h1 class="text-center display-4 mb-3">Topics</h1>
-    <table class="table table-hover border border-secondary rounded">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col"><a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " class="float-right" href="/boards/create"><i class="fas fa-plus"/></a></th>
-        </tr>
-        </thead>
-        <tbody class="whiteBackground">
+    <br><br>
+    <section class="columns is-centered">
+        <h1 class="title is-1">Topics</h1>
+    </section>
+    <br><br>
+    <section class="columns is-centered">
+        <table class="table is-hoverable is-striped is-centered text-centered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th><abbr title="Desc">Description</abbr></th>
+                <th><a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " class="float-right"
+                       href="/boards/create">+</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board: ${boards}" th:onclick="'window.location.href=\'/boards/'+ ${board.id} + '\''">
 
-        <tr class="colorHover" th:each="board: ${boards}" th:onclick="'window.location.href=\'/boards/'+ ${board.id} + '\''">
-
-            <td th:text="${board.name}">Default name</td>
-            <td th:text="${board.description}">Default description</td>
-            <td class="text-right">
-                <a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " th:href="@{/boards/__${board.id}__/edit}" class="mr-2 text-success"><i class="fas fa-pen">P</i></a>
-                <a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') " th:href="@{/boards/__${board.id}__/delete}" class="text-danger"><i class="fas fa-trash">-</i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                <td th:text="${board.name}">Default name</td>
+                <td th:text="${board.description}">Default description</td>
+                <td class="text-right">
+                    <a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') "
+                       th:href="@{/boards/__${board.id}__/edit}">P</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN') ||hasRole('ROLE_MODO') "
+                       th:href="@{/boards/__${board.id}__/delete}">-</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br><br>
+    </section>
 </div>
-
 <div th:replace="fragments/fragments.html :: scripts"></div>
 </body>
 </html>

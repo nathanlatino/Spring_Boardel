@@ -6,20 +6,21 @@
 
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
-<div class="container mt-5">
+<br><br>
+<div class="box" style="margin-right: 10%;margin-left: 10%;">
+
     <form method="post" th:action="@{/posts}" th:object="${post}">
-        <div class="form-group">
-            <label for="name">Post name</label>
-            <input type="text" class="form-control" id="name" placeholder="Post name" th:field="*{name}"
-                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : '' " required>
-            <div class="invalid-feedback"
-                 th:each="error: ${#fields.errors('name')}"
-                 th:text="${error}">Validation error
-            </div>
+        <h1 class="title is-1 has-text-centered">Post name</h1>
+        <div class="field">
+            <p class="control">
+                <input type="text" class="input" id="name" placeholder="Post name" th:field="*{name}"
+                       th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : '' " required>
+            </p>
         </div>
-        <div class="form-group">
-            <label for="content">Post content</label>
-            <textarea class="form-control" id="content" th:field="*{content}"
+        <div class="field">
+            <label for="content">Topic Content</label>
+            <textarea class="textarea" id="content"
+                      th:field="*{content}"
                       th:classappend="${#fields.hasErrors('content')} ? 'is-invalid' : '' "></textarea>
             <div class="invalid-feedback"
                  th:each="error: ${#fields.errors('content')}"
@@ -30,9 +31,10 @@
         <input type="hidden" th:field="*{board}">
         <input type="hidden" th:field="*{user}">
         <input type="hidden" th:field="*{modifiedDate}">
-        <button type="submit" class="btn btn-primary float-right">Post</button>
+        <button type="submit" class="button is-success">Post</button>
     </form>
 </div>
+<br><br>
 
 <div th:replace="fragments/fragments.html :: scripts"></div>
 <div th:replace="fragments/fragments.html :: scripts_mde"></div>

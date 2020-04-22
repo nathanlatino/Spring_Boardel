@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:insert="fragments/fragments.html :: header" lang="en"/>
-
 <body>
 <div th:replace="fragments/fragments.html :: navigation"></div>
-<div class="container">
+<br><br>
+<div class="box" style="margin-right: 10%;margin-left: 10%;">
     <form method="POST" action="#" th:action="@{/login}">
-        <h1 class="text-center display-4 mb-3">Log in</h1>
-        <div class="form-row">
-            <div class="mx-auto col-md-6">
-                <div th:if="${message != null}" class="alert alert-success" th:text="${message}" role="alert">
-                    You have been logged out successfully.
-                </div>
-            </div>
+        <h1 class="title is-1 has-text-centered">Log in</h1>
+        <div style="margin-right: 10%;margin-left: 10%;" th:if="${message != null}"
+             class="tag is-success columns is-centered" th:text="${message}" role="alert">
+            You have been logged out successfully.
         </div>
-        <div class="form-row">
-            <div class="mx-auto col-md-6">
-                <div th:if="${error != null}" class="alert alert-danger" th:text="${error}" role="alert">
-                    Your username and password is invalid.
-                </div>
-            </div>
+        <div style="margin-right: 10%;margin-left: 10%;" th:if="${error != null}"
+             class="tag is-danger columns is-centered" th:text="${error}" role="alert">
+            Your username and password is invalid.
         </div>
-        <div class="form-row">
-            <div class="mx-auto col-md-6">
-                <label th:text="#{label.user.username}">username</label>
-                <input name="username" type="text" class="form-control" placeholder="Username"
-                       autofocus="true" required/>
-            </div>
+        <br>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input name="username" class="input" type="text" placeholder="Username">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+            </p>
         </div>
-        <div class="form-row">
-            <div class="mx-auto col-md-6">
-                <label th:text="#{label.user.password}">password</label>
-                <input name="password" type="password" class="form-control" placeholder="Password" required/>
-            </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input name="password" class="input" type="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
         </div>
-        <div class="form-row">
-            <div class="mx-auto my-md-3 col-md-6">
-                <button class="btn btn-lg btn-dark btn-block" type="submit">Log In</button>
-                <h4 class="text-center my-3"><a href="/register">Create an account</a></h4>
-                <h4 class="text-center"><a th:href="@{/forgotpassword}"
-                                           th:text="#{message.resetPassword}">reset</a></h4>
-            </div>
+        <div class="field">
+            <p class="control">
+                <button class="button is-success" type="submit">
+                    Log In
+                </button>
+            </p>
+        </div>
+        <div class="field">
+            <h4 class="text-center"><a class="button is-text" href="/register">Create an account</a></h4>
+            <h4 class="text-center"><a class="button is-text" th:href="@{/forgotpassword}" >Forgot password ?</a></h4>
         </div>
     </form>
-
 </div>
-
+<br><br>
 
 <div th:replace="fragments/fragments.html :: scripts"></div>
 </body>

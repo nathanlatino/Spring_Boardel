@@ -6,29 +6,26 @@
 
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
-<h1 class="display-3 text-center" th:text="${board.name}">Default name</h1>
+<div class="box" style="margin-right: 10%;margin-left: 10%;">
 
-<div class="container mt-3">
-    <!--    source : https://stackoverflow.com/questions/10520899/form-action-with-javascript/34467977-->
-    <form class="form-inline mb-3" th:action="@{/boards/__${board.id}__}">
-        <div class="form-group ml-auto mr-2">
-            <input type="text" class="form-control" name="search" placeholder="Search" th:value="${search}">
+    <form th:action="@{/boards/__${board.id}__}">
+        <h1 class="display-3 text-center" th:text="${board.name}">Default name</h1>
+        <div class="field">
+            <input name="search" type="text" class="input" id="searchContent" placeholder="Search" required>
         </div>
-        <button type="submit" class="mr-auto btn btn-primary">Search</button>
+        <button type="submit" class="button">Search</button>
     </form>
-    <table class="table table-hover border border-secondary rounded">
-        <thead class="thead-dark">
+    <table class="table is-hoverable is-striped is-centered text-centered is-fullwidth">
+        <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Last modified</th>
-
-            <th scope="col"><a class="float-right"
-                               th:href="'/posts/create?boardId=' +  ${board.id}"><i class="fas fa-plus"></i></a></th>
+            <th>Name</th>
+            <th>Last Modified</th>
+            <th><a class="float-right" th:href="'/posts/create?boardId=' +  ${board.id}">+</a></th>
         </tr>
         </thead>
-        <tbody class="whiteBackground">
-        <tr class="colorHover" th:each="post, iterStat: ${posts}"
-            th:onclick="'window.location.href=\'/posts/'+ ${post.id} + '\''">
+        <tbody>
+        <tr th:each="post, iterStat: ${posts}" th:onclick="'window.location.href=\'/posts/'+ ${post.id} + '\''">
+
             <td th:text="${post.name}">Default name</td>
             <td th:text="${dates[iterStat.index]}">Default date</td>
             <td class="text-right">
@@ -36,25 +33,25 @@
                     <form method="post" th:action="@{/posts/delete}"
                           th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') || #authorization.expression('hasRole(''ROLE_MODO'')') || currentUser.equals(post.user)}">
                         <input type="hidden" th:name="post" th:value="${post.id}">
-                        <button type="submit" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
+                        <button type="submit" class="button">-</i>
+                        </button>
                     </form>
                 </div>
             </td>
-
         </tr>
         </tbody>
     </table>
-    <div class="row">
-        <div class="ml-auto col-auto text-center"><a th:class="${posts.number != 0} ? '' : 'disabled'"
-                                                     th:href="@{__${pageUrl}__&page=__${0}__}"><i
+    <div class="tile">
+        <div class="has-text-center tile"><a th:class="${posts.number != 0} ? '' : 'disabled'"
+                                        th:href="@{__${pageUrl}__&page=__${0}__}"><i
                 class="pageChanger fas fa-angle-double-left"></i></a></div>
-        <div class="col-auto text-center"><a th:class="${posts.number > 0} ? '' : 'disabled'"
+        <div class="has-text-center tile"><a th:class="${posts.number > 0} ? '' : 'disabled'"
                                              th:href="@{__${pageUrl}__&page=__${posts.number - 1}__}"><i
                 class="pageChanger fas fa-angle-left"></i></a></div>
-        <div class="col-auto text-center"><a th:class="${posts.number < posts.totalPages -1 } ? '' : 'disabled'"
+        <div class="has-text-center tile"><a th:class="${posts.number < posts.totalPages -1 } ? '' : 'disabled'"
                                              th:href="@{__${pageUrl}__&page=__${posts.number + 1}__}"><i
                 class="pageChanger fas fa-angle-right"></i></a></div>
-        <div class="mr-auto col-auto text-center"><a
+        <div class="has-text-center tile"><a
                 th:class="${posts.number != (posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1)} ? '' : 'disabled'"
                 th:href="@{__${pageUrl}__&page=__${posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1}__}"><i
                 class="pageChanger fas fa-angle-double-right"></i></a></div>
