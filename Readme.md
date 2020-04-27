@@ -6,7 +6,7 @@ Classic forum, project for He-Arc
 # Quick Start
 * `Docker-compose up --build`
 * `docker-compose exec db mysql -u root -p`
-* enter rhe password (root)
+* enter the password (root)
 * `CREATE database BOARDEL`
 * `Docker-compose up`
 * Sign up
