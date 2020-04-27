@@ -1,0 +1,16 @@
+<svg width="580" height="199" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="201" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-weight="bold" stroke="#000" transform="matrix(2.8003232330106527,0,0,3.2193849545704474,-127.02169295667792,-374.62855905913494) " xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="35" id="svg_1" y="160.337628" x="52.359699" stroke-width="0" fill="#bbbbbb">BOARD'EL</text>
+  <path stroke="#000" id="svg_6" d="m540.007157,24.961981c-16.016286,0 -28.99982,10.521811 -28.99982,23.500892c0,4.432713 1.534939,8.578673 4.17614,12.116638l-4.17614,9.891793l11.626778,-3.222062c4.845443,2.945472 10.848054,4.712744 17.373042,4.712744c16.016235,0 29.000174,-10.521873 29.000174,-23.499112s-12.983939,-23.500892 -29.000174,-23.500892zm1.798029,36.787276l-4.078523,0l0,-4.227992l4.078523,0l0,4.227992zm-0.198738,-7.342507l-3.681038,0l-0.364302,-18.09143l4.376846,0l-0.331509,18.09143l0.000002,0z" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#bbbbbb"/>
+ </g>
+</svg>

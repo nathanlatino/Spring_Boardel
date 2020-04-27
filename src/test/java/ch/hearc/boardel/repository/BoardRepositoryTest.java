@@ -1,13 +1,16 @@
 package ch.hearc.boardel.repository;
 
 import ch.hearc.boardel.BoardelApplication;
+import ch.hearc.boardel.controller.RegisterController;
 import ch.hearc.boardel.model.Board;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,9 +18,9 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
+@Repository
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@SpringBootTest(classes = BoardelApplication.class)
 public class BoardRepositoryTest {
 
 

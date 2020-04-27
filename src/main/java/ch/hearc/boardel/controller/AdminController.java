@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping("admin/changerole/{id}/{search}")
+    @PostMapping("admin/changerole/{id}/{search}")
     public String changeRole(HttpServletRequest request, @PathVariable Long id, @PathVariable String search) {
         String admin = request.getParameter("admin");
         String modo = request.getParameter("modo");

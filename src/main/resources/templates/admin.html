@@ -5,56 +5,69 @@
 <body>
 
 <div th:replace="fragments/fragments.html :: navigation"></div>
-<h1 class="title is-1 has-text-centered">Search User</h1>
-<div style="margin-right: 10%;margin-left: 10%;">
-    <div th:if="${roleUpdate != null} " class="row">
-        <span th:text="${roleUpdate}">Role updated</span>
-        <button type="button" class="button" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <form method="GET" class="form-inline mb-3" action="#" th:action="@{/admin}">
-        <div class="field">
-            <input name="search" type="text" class="input" id="searchContent" placeholder="Search" required>
+<div class="container">
+    <div class="content main-content">
+        <div class="columns">
+            <div class="column is-11-mobile is-8-desktop">
+                <section class="section">
+                    <h1 class="title is-1">Management</h1>
+                </section>
+                <section class="section">
+                    <div th:if="${roleUpdate != null} " class="row">
+                        <span class="tag is-success"  role="alert" th:text="${roleUpdate}">Role updated</span>
+                    </div>
+                    <form method="GET" action="#" th:action="@{/admin}">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <input name="search" type="text" class="input" id="searchContent" placeholder="Search"
+                                       required>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <table th:if="${usernames != null}"
+                           class="table is-hoverable is-striped is-centered text-centered is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="username : ${usernames}">
+
+                            <td th:text="${username.username}" class>Default name</td>
+
+                            <form th:method="post" action="#"
+                                  th:action="@{/admin/changerole/{id}/{search}/(id=${username.id},search=${search})}">
+                                <td>
+                                    <label class="checkbox" th:for="${'admin' + username.id}">
+                                        <input type="checkbox"
+                                               th:checked="${#sets.contains(username.roles,roleAdmin)}" th:name="admin"
+                                               th:id="${'admin' + username.id}">
+                                        Admin</label><br>
+                                    <label class="checkbox" th:for="${'modo' + username.id}">
+                                        <input type="checkbox"
+                                               th:checked="${#sets.contains(username.roles,roleModo)}" th:name="modo"
+                                               th:id="${'modo' + username.id}">
+                                        Moderator</label></td>
+                                <td>
+                                    <button type="submit" class="button">Update</button>
+                                </td>
+                            </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </div>
-        <button type="submit" class="button">Search</button>
-    </form>
-    <br>
-    <table th:if="${usernames != null}" class="table is-fullwidth is-hoverable is-striped is-centered text-centered">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="username : ${usernames}">
-
-            <td th:text="${username.username}" class>Default name</td>
-            <td>
-                <form class="float-right text-danger form-inline" th:method="put" action="#"
-                      th:action="@{/admin/changerole/{id}/{search}/(id=${username.id},search=${search})}">
-
-                    <label class="checkbox" th:for="${'admin' + username.id}">
-                        <input type="checkbox"
-                               th:checked="${#sets.contains(username.roles,roleAdmin)}" th:name="admin"
-                               th:id="${'admin' + username.id}">
-                        Administrator</label>
-                    <label class="checkbox" th:for="${'modo' + username.id}">
-                        <input type="checkbox"
-                               th:checked="${#sets.contains(username.roles,roleModo)}" th:name="modo"
-                               th:id="${'modo' + username.id}">
-                        Moderator</label>
-
-                    <button type="submit" class="button">validate</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br><br>
+    </div>
 </div>
-
 
 
 <div th:replace="fragments/fragments.html :: scripts"></div>

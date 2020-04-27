@@ -3,50 +3,64 @@
 <head th:insert="fragments/fragments.html :: header" lang="en"/>
 <body>
 <div th:replace="fragments/fragments.html :: navigation"></div>
-<br><br>
-<div class="box" style="margin-right: 10%;margin-left: 10%;">
-    <form method="POST" action="#" th:action="@{/login}">
-        <h1 class="title is-1 has-text-centered">Log in</h1>
-        <div style="margin-right: 10%;margin-left: 10%;" th:if="${message != null}"
-             class="tag is-success columns is-centered" th:text="${message}" role="alert">
-            You have been logged out successfully.
-        </div>
-        <div style="margin-right: 10%;margin-left: 10%;" th:if="${error != null}"
-             class="tag is-danger columns is-centered" th:text="${error}" role="alert">
-            Your username and password is invalid.
-        </div>
-        <br>
-        <div class="field">
-            <p class="control has-icons-left has-icons-right">
-                <input name="username" class="input" type="text" placeholder="Username">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
-            </p>
-        </div>
-        <div class="field">
-            <p class="control has-icons-left">
-                <input name="password" class="input" type="password" placeholder="Password">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                </span>
-            </p>
-        </div>
-        <div class="field">
-            <p class="control">
-                <button class="button is-success" type="submit">
-                    Log In
-                </button>
-            </p>
-        </div>
-        <div class="field">
-            <h4 class="text-center"><a class="button is-text" href="/register">Create an account</a></h4>
-            <h4 class="text-center"><a class="button is-text" th:href="@{/forgotpassword}" >Forgot password ?</a></h4>
-        </div>
-    </form>
-</div>
-<br><br>
 
+<div class="container">
+    <div class="content main-content">
+        <div class="columns">
+            <div class="column" style="width: 100%">
+                <section class="section">
+                    <h1 class="title is-1">Log In</h1>
+                </section>
+                <div class="section">
+                    <div class="columns">
+                        <div class="column box-wrapper is-4">
+                            <div class="box">
+                                <form method="POST" action="#" th:action="@{/login}">
+                                    <div th:if="${message != null}"
+                                         class="tag is-success" th:text="${message}" role="alert">
+                                        <span>You have been logged out successfully.</span>
+                                    </div>
+                                    <div th:if="${error != null}"
+                                         class="tag is-danger" th:text="${error}" role="alert">
+                                        <span>Your username and password is invalid.</span>
+                                    </div>
+                                    <br>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input name="username" class="input" type="text" placeholder="Username">
+                                            <span class="icon is-small is-left">
+                                                   <i class="fas fa-user"></i>
+                                               </span>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left">
+                                            <input name="password" class="input" type="password" placeholder="Password">
+                                            <span class="icon is-small is-left">
+                                                   <i class="fas fa-lock"></i>
+                                               </span>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control">
+                                            <button class="button is-info" type="submit">
+                                                Log In
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <a class="button is-text" href="/register">Create an account</a><br>
+                                        <a class="button is-text" th:href="@{/forgotpassword}">Forgot password ?</a>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:replace="fragments/fragments.html :: scripts"></div>
 </body>
 </html>

@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:insert="fragments/fragments.html :: header" lang="en"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+</head>
+<style>
 
+
+    body {
+        --primary: #00949E;
+        --red: #ec008c;
+        --green: #139A43;
+        --blue: #3587A4;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .box-wrapper {
+        margin: 0 auto 0 auto;
+    }
+</style>
 <body>
-<div th:replace="fragments/fragments.html :: navigation"></div>
 
 <div class="container">
     <div class="content main-content">
@@ -65,10 +85,12 @@
             </div>
         </div>
     </div>
+                    
+
 
 </div>
 
 
-<div th:replace="fragments/fragments.html :: scripts"></div>
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </body>
 </html>

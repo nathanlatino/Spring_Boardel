@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
+@Repository
 @DataJpaTest
 @SpringBootTest(classes = BoardelApplication.class)
 public class CommentRepositoryTest {

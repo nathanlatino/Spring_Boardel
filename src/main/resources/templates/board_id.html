@@ -6,55 +6,92 @@
 
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
-<div class="box" style="margin-right: 10%;margin-left: 10%;">
 
-    <form th:action="@{/boards/__${board.id}__}">
-        <h1 class="display-3 text-center" th:text="${board.name}">Default name</h1>
-        <div class="field">
-            <input name="search" type="text" class="input" id="searchContent" placeholder="Search" required>
-        </div>
-        <button type="submit" class="button">Search</button>
-    </form>
-    <table class="table is-hoverable is-striped is-centered text-centered is-fullwidth">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Last Modified</th>
-            <th><a class="float-right" th:href="'/posts/create?boardId=' +  ${board.id}">+</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="post, iterStat: ${posts}" th:onclick="'window.location.href=\'/posts/'+ ${post.id} + '\''">
 
-            <td th:text="${post.name}">Default name</td>
-            <td th:text="${dates[iterStat.index]}">Default date</td>
-            <td class="text-right">
-                <div sec:authorize="isAuthenticated()">
-                    <form method="post" th:action="@{/posts/delete}"
-                          th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') || #authorization.expression('hasRole(''ROLE_MODO'')') || currentUser.equals(post.user)}">
-                        <input type="hidden" th:name="post" th:value="${post.id}">
-                        <button type="submit" class="button">-</i>
-                        </button>
+<div class="container">
+    <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="/boards/">Topics</a></li>
+        <li class="is-active"><a th:href="@{/boards/__${board.id}__}" th:text="${board.name}" aria-current="page">Default name topic</a></li>
+      </ul>
+    </nav>
+    <div class="content main-content">
+        <div class="columns">
+            <div class="column is-11-mobile is-8-desktop">
+
+                <section class="section">
+                    <h1 th:text="${board.name}" class="title is-1">Default name</h1>
+                </section>
+
+                <section class="section">
+                    <form th:action="@{/boards/__${board.id}__}">
+                        <div class="field is-grouped is-gapless">
+                            <div class="control">
+                                <input name="search" type="text" class="input" id="searchContent" placeholder="Search"
+                                       required>
+
+                            </div>
+                            <div class="control">
+                                <a th:href="@{/boards/__${board.id}__}" class="button is-white"><i
+                                        class="fa fa-times" style="color: var(--red)"></i>
+                                </a>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button">Search</button>
+                            </div>
+
+
+                        </div>
                     </form>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="tile">
-        <div class="has-text-center tile"><a th:class="${posts.number != 0} ? '' : 'disabled'"
-                                        th:href="@{__${pageUrl}__&page=__${0}__}"><i
-                class="pageChanger fas fa-angle-double-left"></i></a></div>
-        <div class="has-text-center tile"><a th:class="${posts.number > 0} ? '' : 'disabled'"
-                                             th:href="@{__${pageUrl}__&page=__${posts.number - 1}__}"><i
-                class="pageChanger fas fa-angle-left"></i></a></div>
-        <div class="has-text-center tile"><a th:class="${posts.number < posts.totalPages -1 } ? '' : 'disabled'"
-                                             th:href="@{__${pageUrl}__&page=__${posts.number + 1}__}"><i
-                class="pageChanger fas fa-angle-right"></i></a></div>
-        <div class="has-text-center tile"><a
-                th:class="${posts.number != (posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1)} ? '' : 'disabled'"
-                th:href="@{__${pageUrl}__&page=__${posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1}__}"><i
-                class="pageChanger fas fa-angle-double-right"></i></a></div>
+                    <table class="table is-hoverable is-striped is-centered text-centered is-fullwidth board-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Modified</th>
+                            <th>Content</th>
+                            <th><a class="float-right" th:href="'/posts/create?boardId=' +  ${board.id}"><i
+                                    class="fa fa-plus" style="color:var(--green)"></i></a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="post, iterStat: ${posts}"
+                            th:onclick="'window.location.href=\'/posts/'+ ${post.id} + '\''">
+
+                            <td th:text="${post.name}">Default name</td>
+                            <td th:text="${dates[iterStat.index]}">Default date</td>
+                            <td th:text="${#strings.abbreviate(post.content, 60)}">Default content</td>
+                            <td class="text-right">
+                                <div sec:authorize="isAuthenticated()">
+                                    <form method="post" th:action="@{/posts/delete}"
+                                          th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') || #authorization.expression('hasRole(''ROLE_MODO'')') || currentUser.equals(post.user)}">
+                                        <input type="hidden" th:name="post" th:value="${post.id}">
+                                        <button type="submit" class="button is-text"><i class="fa fa-trash" style="color:var(--red)"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="field is-grouped">
+                        <div class="has-text-center control"><a th:class="${posts.number != 0} ? '' : 'disabled'"
+                                                                th:href="@{__${pageUrl}__&page=__${0}__}"><i
+                                class="pageChanger fas fa-angle-double-left"></i></a></div>
+                        <div class="has-text-center control"><a th:class="${posts.number > 0} ? '' : 'disabled'"
+                                                                th:href="@{__${pageUrl}__&page=__${posts.number - 1}__}"><i
+                                class="pageChanger fas fa-angle-left"></i></a></div>
+                        <div class="has-text-center control"><a
+                                th:class="${posts.number < posts.totalPages -1 } ? '' : 'disabled'"
+                                th:href="@{__${pageUrl}__&page=__${posts.number + 1}__}"><i
+                                class="pageChanger fas fa-angle-right"></i></a></div>
+                        <div class="has-text-center control"><a
+                                th:class="${posts.number != (posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1)} ? '' : 'disabled'"
+                                th:href="@{__${pageUrl}__&page=__${posts.totalPages==0 ? posts.totalPages : posts.totalPages - 1}__}"><i
+                                class="pageChanger fas fa-angle-double-right"></i></a></div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -5,73 +5,96 @@
 <body>
 <div th:replace="fragments/fragments.html :: navigation"></div>
 
-<br><br>
-<div class="box" style="margin-right: 10%;margin-left: 10%;">
-    <form method="POST" action="#" th:action="@{/register}" th:object="${userForm}" enctype="utf8">
-        <h1 class="title is-1 has-text-centered">Register</h1>
-        <br>
-        <div class="field">
-            <p class="control has-icons-left has-icons-right">
-                <input name="username" th:field="*{username}" class="input" type="text" placeholder="Username"
-                       th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : '' " required>
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
-            <div class="invalid-feedback"
-                 th:each="error: ${#fields.errors('username')}"
-                 th:text="${error}">Validation error
-            </div>
-            </p>
-        </div>
-        <div class="field">
-            <p class="control has-icons-left has-icons-right">
-                <input placeholder="Email" th:field="*{email}" type="email" class="input"
-                       th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : '' " required/>
-                <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                </span>
-                <div class="invalid-feedback"
-                     th:each="error: ${#fields.errors('email')}"
-                     th:text="${error}">Validation error
-                </div>
-            </p>
-        </div>
-        <div class="field">
-            <p class="control has-icons-left has-icons-right">
-            <input type="password" th:field="*{password}" placeholder="Password" class="input"
-                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : '' " required/>
-            <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-            </span>
-            <div class="invalid-feedback"
-                 th:each="error : ${#fields.errors('password')}"
-                 th:text="${error}">Validation error
-            </div>
-        </div>
-        <div class="field">
-            <p class="control has-icons-left has-icons-right">
-                <input type="password" placeholder="Repeat password"  th:field="*{passwordConfirm}" class="input"
-                       th:classappend="${#fields.hasErrors('passwordConfirm')} ? 'is-invalid' : '' " required/>
-                <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                </span>
-                <div class="invalid-feedback"
-                     th:each="error : ${#fields.errors('passwordConfirm')}"
-                     th:text="${error}">Validation error
-                </div>
-            </p>
-        </div>
-        <div class="field">
-            <p class="control">
-                <button class="button is-success" type="submit">
-                    Confirm
-                </button>
-            </p>
-        </div>
-    </form>
-</div>
-<br><br>
 
+<div class="container">
+    <div class="content main-content">
+        <div class="columns">
+            <div class="column" style="width: 100%">
+                <section class="section">
+                    <h1 class="title is-1">Register</h1>
+                </section>
+                <div class="section">
+                    <div class="columns">
+                        <div class="column box-wrapper is-4">
+                            <div class="box">
+                                <form method="POST" action="#" th:action="@{/register}" th:object="${userForm}"
+                                      enctype="utf8">
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input name="username" th:field="*{username}" class="input" type="text"
+                                                   placeholder="Username"
+                                                   th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : '' "
+                                                   required/>
+                                            <span class="icon is-small is-left">
+                                                                     <i class="fas fa-user"></i>
+                                                                </span>
+                                        <div class="invalid-feedback tag is-danger"
+                                             th:each="error: ${#fields.errors('username')}"
+                                             th:text="${error}">Validation error
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input placeholder="Email" th:field="*{email}" type="email" class="input"
+                                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : '' "
+                                                   required/>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                        <div class="invalid-feedback tag is-danger"
+                                             th:each="error: ${#fields.errors('email')}"
+                                             th:text="${error}">Validation error
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input type="password" th:field="*{password}" placeholder="Password"
+                                                   class="input"
+                                                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : '' "
+                                                   required/>
+                                            <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <div class="invalid-feedback tag is-danger"
+                                             th:each="error : ${#fields.errors('password')}"
+                                             th:text="${error}">Validation error
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input type="password" placeholder="Repeat password"
+                                                   th:field="*{passwordConfirm}"
+                                                   class="input"
+                                                   th:classappend="${#fields.hasErrors('passwordConfirm')} ? 'is-invalid' : '' "
+                                                   required/>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                        <div class="invalid-feedback tag is-danger"
+                                             th:each="error : ${#fields.errors('passwordConfirm')}"
+                                             th:text="${error}">Validation error
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control">
+                                            <button class="button is-success" type="submit">
+                                                Confirm
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div th:replace="fragments/fragments.html :: scripts"></div>
